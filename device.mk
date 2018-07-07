@@ -312,7 +312,8 @@ PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 # tri-state-key
 PRODUCT_PACKAGES += \
-    TriStateHandler
+    TriStateHandler \
+    tri-state-key_daemon
 
 # Update Engine
 PRODUCT_PACKAGES += \
