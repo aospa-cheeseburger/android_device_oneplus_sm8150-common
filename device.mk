@@ -310,6 +310,10 @@ PRODUCT_PACKAGES += \
 # Treble
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
+# tri-state-key
+PRODUCT_PACKAGES += \
+    TriStateHandler
+
 # Update Engine
 PRODUCT_PACKAGES += \
     update_engine \
