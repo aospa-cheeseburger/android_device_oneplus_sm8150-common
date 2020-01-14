@@ -43,31 +43,46 @@ public class TriStateHandler implements DeviceKeyHandler {
     }
 
     public KeyEvent handleKeyEvent(KeyEvent event) {
-        int scanCode = event.getScanCode();
+        final int scanCode = event.getScanCode();
+        final int currentRingerMode = mAudioManager.getRingerModeInternal();
 
         switch (scanCode) {
             case MODE_NORMAL:
-                mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
+                if (currentRingerMode != AudioManager.RINGER_MODE_NORMAL) {
+                    doHapticFeedback(VibrationEffect.EFFECT_DOUBLE_CLICK);
+                    mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
+                } else {
+                    return event;
+                }
                 break;
             case MODE_VIBRATION:
-                mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_VIBRATE);
+                if (currentRingerMode != AudioManager.RINGER_MODE_VIBRATE) {
+                    doHapticFeedback(VibrationEffect.EFFECT_THUD);
+                    mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_VIBRATE);
+                } else {
+                    return event;
+                }
                 break;
             case MODE_SILENCE:
-                mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_SILENT);
+                if (currentRingerMode != AudioManager.RINGER_MODE_SILENT) {
+                    doHapticFeedback(VibrationEffect.EFFECT_POP);
+                    mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_SILENT);
+                } else {
+                    return event;
+                }
                 break;
             default:
                 return event;
         }
-        doHapticFeedback();
 
         return null;
     }
 
-    private void doHapticFeedback() {
-        if (mVibrator == null || !mVibrator.hasVibrator()) {
-            return;
+    private void doHapticFeedback(int effect) {
+        if (mVibrator != null) {
+            if (mVibrator.hasVibrator()) {
+                mVibrator.vibrate(VibrationEffect.get(effect));
+            }
         }
-
-        mVibrator.vibrate(50);
     }
 }
