@@ -222,6 +222,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += \
     device/oneplus/sm8150-common
 
+# Overlays
+PRODUCT_PACKAGES += \
+    SM8150CommonCarrierConfig \
+    SM8150CommonFrameworksRes \
+    SM8150CommonSystemUI \
+    SM8150CommonFrameworksPARes \
+    SM8150CommonSettingsPA \
+    SM8150CommonSystemUIPA
+
 # PASR HAL
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.power.pasr.enabled=true
