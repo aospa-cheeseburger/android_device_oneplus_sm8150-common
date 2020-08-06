@@ -8,5 +8,8 @@
 /dev/dash                                                                               u:object_r:dash_device:s0
 /(vendor|system/vendor)/bin/dashd                                                       u:object_r:dashd_exec:s0
 
+# Fingerprint
+/system/bin/hw/vendor\.aospa\.biometrics\.fingerprint\.inscreen@1.0-service             u:object_r:hal_fod_msmnile_exec:s0
+
 # FRP
 /dev/block/platform/soc/1d84000.ufshc/by-name/config                                               u:object_r:frp_block_device:s0
