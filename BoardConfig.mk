@@ -109,6 +109,9 @@ BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # SELinux
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
+    $(DEVICE_PATH)/sepolicy/private
+
 BOARD_SEPOLICY_DIRS += \
     $(DEVICE_PATH)/sepolicy/vendor
 
