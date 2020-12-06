@@ -1,0 +1,295 @@
+# Copyright (C) 2020 Paranoid Android
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+on charger
+    start dashd
+
+on fs
+    mkdir /mnt/vendor/persist/camera 0777 system system
+
+    # AMS TOF
+    chown system system /sys/kernel/tof_control/app0/capture
+    chmod 666 /sys/kernel/tof_control/app0/capture
+    chown system system /sys/kernel/tof_control/app0/app0_get_fac_calib
+    chmod 666 /sys/kernel/tof_control/app0/app0_get_fac_calib
+    chown system system /sys/kernel/tof_control/app0/app0_get_distance
+    chmod 666 /sys/kernel/tof_control/app0/app0_get_distance
+    chown system system /sys/kernel/tof_control/app0/app0_read_peak_crosstalk
+    chmod 666 /sys/kernel/tof_control/app0/app0_read_peak_crosstalk
+    chown system system /sys/kernel/tof_control/app0/period
+    chmod 666 /sys/kernel/tof_control/app0/period
+    chown system system /sys/kernel/tof_control/app0/iterations
+    chmod 666 /sys/kernel/tof_control/app0/iterations
+    chown system system /sys/kernel/tof_control/app0/alg_setting
+    chmod 666 /sys/kernel/tof_control/app0/alg_setting
+    chown system system /sys/kernel/tof_control/app0/app0_clk_iterations
+    chmod 666 /sys/kernel/tof_control/app0/app0_clk_iterations
+    chown system system /sys/kernel/tof_control/chip_enable
+    chmod 666 /sys/kernel/tof_control/chip_enable
+    chown system system /sys/kernel/tof_control/app0/app0_clk_trim_set
+    chmod 666 /sys/kernel/tof_control/app0/app0_clk_trim_set
+    chown system system /sys/kernel/tof_control/app0/app0_apply_fac_calib
+    chmod 666 /sys/kernel/tof_control/app0/app0_apply_fac_calib
+    chown system system /sys/kernel/tof_control/driver_debug
+    chmod 666 /sys/kernel/tof_control/driver_debug
+    # OIS
+    chown system system /sys/kernel/ois_control/dump_registers
+    chmod 666 /sys/kernel/ois_control/dump_registers
+    # Torch
+    chown system system /sys/class/leds/led:torch_0/brightness
+    chmod 666 /sys/class/leds/led:torch_0/brightness
+    chown system system /sys/class/leds/led:torch_1/brightness
+    chmod 666 /sys/class/leds/led:torch_1/brightness
+    chown system system /sys/class/leds/led:switch_0/brightness
+    chmod 666 /sys/class/leds/led:switch_0/brightness
+    chown system system /sys/class/leds/led:switch_1/brightness
+    chmod 666 /sys/class/leds/led:switch_1/brightness
+    chown system system /sys/class/leds/led:switch_2/brightness
+    chmod 666 /sys/class/leds/led:switch_2/brightness
+    chown system system /sys/class/leds/led:torch_2/brightness
+    chmod 666 /sys/class/leds/led:torch_2/brightness
+    chown system system /sys/class/leds/led:switch_3/brightness
+    chmod 666 /sys/class/leds/led:switch_3/brightness
+
+    # Brightness
+    chmod 0666 /sys/class/drm/card0-DSI-1/hbm
+    chmod 0666 /sys/class/drm/card0-DSI-1/hbm_brightness
+    chmod 0666 /sys/class/backlight/panel0-backlight/brightness
+    # FSC
+    chown system system /sys/module/fsc/parameters/enable
+    chmod 0664 /sys/module/fsc/parameters/enable
+
+    # Haptics
+    chown system system /sys/class/leds/vibrator/haptic_audio_ai_input
+    chown system system /sys/class/leds/vibrator/haptic_audio_tp_input
+    chown system system /sys/class/leds/vibrator/haptic_audio_tp_size
+    chown audioserver audioserver /sys/class/leds/vibrator/register
+    chown system system /sys/class/leds/vibrator/vmax_mv
+    chmod 660 /sys/class/leds/vibrator/vmax_mv
+    chmod 660 /sys/class/leds/vibrator/rtp
+    chmod 660 /sys/class/leds/vibrator/haptic_audio_tp_time
+    chmod 644 /sys/class/leds/vibrator/haptic_osc_data
+    chmod 660 /sys/class/leds/vibrator/ram_test
+    chmod 644 /sys/class/leds/vibrator/ram_update
+    chmod 644 /sys/class/leds/vibrator/f0_cali_data
+    chown system system /sys/class/leds/vibrator/activate
+    chown system system /sys/class/leds/vibrator/brightness
+    chown system system /sys/class/leds/vibrator/duration
+    chown system system /sys/class/leds/vibrator/state
+    chown system system /sys/class/leds/vibrator/rf_hz
+    chown system system /sys/class/leds/vibrator/lra_resistance
+    chown system system /sys/class/leds/vibrator/gain
+    chown system system /sys/class/leds/vibrator/vmax
+    chown system system /sys/class/leds/vibrator/index
+    chown system system /sys/class/leds/vibrator/activate_mode
+    chown system system /sys/class/leds/vibrator/seq
+    chown system audio /sys/class/leds/vibrator/rtp
+    chown system audio /sys/class/leds/vibrator/haptic_audio_tp_time
+    chown system system /sys/class/leds/vibrator/loop
+    chown system system /sys/class/leds/vibrator/ignore_store
+    chown system system /sys/class/leds/vibrator/osc_cali
+    chown system system /sys/class/leds/vibrator/haptic_osc_data
+    chown system system /sys/class/leds/vibrator/ram_test
+    chown system system /sys/class/leds/vibrator/ram_update
+    chown system system /sys/class/leds/vibrator/f0_cali_data
+    chown system system /sys/class/leds/vibrator/cali
+    chown system system /sys/module/lpm_levels/parameters/sleep_disabled
+    restorecon /sys/class/leds/vibrator/activate
+    restorecon /sys/class/leds/vibrator/brightness
+    restorecon /sys/class/leds/vibrator/duration
+    restorecon /sys/class/leds/vibrator/state
+    chown audioserver audioserver /dev/awinic_haptic
+    chown audioserver audioserver /sys/class/leds/vibrator/haptic_audio
+    chown audioserver audioserver /sys/class/leds/vibrator/gun_type
+    chown audioserver audioserver /sys/class/leds/vibrator/bullet_nr
+    chmod 777 /sys/class/leds/vibrator/gun_type
+    chmod 777 /sys/class/leds/vibrator/bullet_nr
+    chmod 777 /sys/class/leds/vibrator/register
+
+    # Thermal
+    chown system system /dev/msm_thermal
+    chown system system /dev/skin_thermal
+    chown system system /dev/modem_skin_thermal
+    chown system system /dev/mmw0_thermal
+    chown system system /dev/mmw1_thermal
+    chown system system /dev/mmw2_thermal
+    chmod 0664 /dev/msm_thermal
+    chmod 0664 /dev/skin_thermal
+    chmod 0664 /dev/modem_skin_thermal
+    chmod 0664 /dev/mmw0_thermal
+    chmod 0664 /dev/mmw1_thermal
+    chmod 0664 /dev/mmw2_thermal
+
+    # DASH
+    chown system system /proc/enhance_dash
+
+on init
+    # DASH
+    chown system system /dev/dash
+    chmod 0664 /dev/dash
+
+    setprop vendor.boot.verifiedbootstate ${ro.boot.verifiedbootstate}
+    setprop vendor.boot.hw_version ${ro.boot.hw_version}
+
+on post-fs
+    # Optimized Charging
+    chown system system /sys/class/power_supply/battery/op_disable_charge
+    chmod 660 /sys/class/power_supply/battery/op_disable_charge
+    chown system system /sys/class/power_supply/bms/battery_health
+    chmod 660 /sys/class/power_supply/bms/battery_health
+
+    chmod 0664 /sys/module/qpnp_smb5/parameters/call_on
+    chown radio radio /sys/module/qpnp_smb5/parameters/call_on
+    chmod 0666 /sys/module/qpnp_smb5/parameters/video_call_on
+    chown system system /sys/module/qpnp_smb5/parameters/video_call_on
+
+    # Alert Slider
+    chown system system /sys/bus/platform/devices/soc/soc\:tri_state_key/hall_data_calib
+    chown system system /sys/bus/platform/devices/soc/soc\:tri_state_key/hall_set_value
+
+    # Thermal
+    chown root system /sys/class/thermal/cooling_device0/cur_state
+    chown root system /sys/class/thermal/cooling_device1/cur_state
+    chown root system /sys/class/thermal/cooling_device2/cur_state
+    chown root system /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+    chown root system /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+    chown root system /sys/class/thermal/cooling_device14/cur_state
+    chmod 660 /sys/class/thermal/cooling_device0/cur_state
+    chmod 660 /sys/class/thermal/cooling_device1/cur_state
+    chmod 660 /sys/class/thermal/cooling_device2/cur_state
+    chmod 660 /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+    chmod 660 /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+    chmod 660 /sys/class/thermal/cooling_device14/cur_state
+
+    # USB
+    chmod 0664 /sys/module/qpnp_smb5/parameters/usb_connector_temp
+    chown system system /sys/module/qpnp_smb5/parameters/usb_connector_temp
+    chmod 0664 /sys/module/qpnp_smb5/parameters/disable_connector_protect
+    chown system system /sys/module/qpnp_smb5/parameters/disable_connector_protect
+    chmod 0664 /sys/module/qpnp_smb5/parameters/usb_interval_temp
+    chown system system /sys/module/qpnp_smb5/parameters/usb_interval_temp
+
+on boot
+    # Display
+    chmod 0666 /sys/class/drm/card0-DSI-1/SRGB
+    chown system system /sys/class/drm/card0-DSI-1/SRGB
+    chmod 0666 /sys/class/drm/card0-DSI-1/DCI_P3
+    chown system system /sys/class/drm/card0-DSI-1/DCI_P3
+    chmod 0666 /sys/class/drm/card0-DSI-1/hbm
+    chown system system /sys/class/drm/card0-DSI-1/hbm
+    chmod 0666 /sys/class/drm/card0-DSI-1/aod
+    chown system system /sys/class/drm/card0-DSI-1/aod
+    chmod 0666 /sys/class/drm/card0-DSI-1/night_mode
+    chown system system /sys/class/drm/card0-DSI-1/night_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/panel_serial_number
+    chown system system /sys/class/drm/card0-DSI-1/panel_serial_number
+    chmod 0666 /sys/class/drm/card0-DSI-1/oneplus_mode
+    chown system system /sys/class/drm/card0-DSI-1/oneplus_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/adaption_mode
+    chown system system /sys/class/drm/card0-DSI-1/adaption_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/notify_fppress
+    chown system system /sys/class/drm/card0-DSI-1/notify_fppress
+    chmod 0666 /sys/class/drm/card0-DSI-1/dim_alpha
+    chown system system /sys/class/drm/card0-DSI-1/dim_alpha
+    chmod 0666 /sys/class/drm/card0-DSI-1/notify_dim
+    chown system system /sys/class/drm/card0-DSI-1/notify_dim
+    chmod 0666 /sys/class/drm/card0-DSI-1/force_screenfp
+    chown system system /sys/class/drm/card0-DSI-1/force_screenfp
+    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_p3_mode
+    chown system system  /sys/class/drm/card0-DSI-1/native_display_p3_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_wide_color_mode
+    chown system system /sys/class/drm/card0-DSI-1/native_display_wide_color_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_srgb_color_mode
+    chown system system /sys/class/drm/card0-DSI-1/native_display_srgb_color_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/hbm_brightness
+    chown system system /sys/class/drm/card0-DSI-1/hbm_brightness
+	chmod 0666 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dynamic_dsi_clock
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dynamic_dsi_clock
+    chown radio radio /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dynamic_dsi_clock
+    chown radio radio /proc/force_reset
+    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_loading_effect_mode
+    chown system system /sys/class/drm/card0-DSI-1/native_display_loading_effect_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_customer_srgb_mode
+    chown system system /sys/class/drm/card0-DSI-1/native_display_customer_srgb_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_customer_p3_mode
+    chown system system /sys/class/drm/card0-DSI-1/native_display_customer_p3_mode
+    chmod 0666 /sys/class/drm/card0-DSI-1/dimlayer_bl_en
+    chown system system /sys/class/drm/card0-DSI-1/dimlayer_bl_en
+    chmod 0666 /sys/class/drm/card0-DSI-1/dither_en
+    chown system system /sys/class/drm/card0-DSI-1/dither_en
+    # TP Firmware
+    write /sys/devices/platform/soc/a94000.i2c/i2c-4/4-004b/tp_fw_update 0
+    write /sys/devices/platform/soc/a94000.i2c/i2c-4/4-0048/tp_fw_update 0
+    write /sys/devices/platform/soc/984000.i2c/i2c-4/4-005d/tp_fw_update 0
+    write /sys/devices/platform/soc/984000.i2c/i2c-4/4-0048/tp_fw_update 0
+    write /sys/devices/platform/soc/a94000.i2c/i2c-4/4-005d/tp_fw_update 0
+    write /sys/devices/platform/soc/880000.spi/spi_master/spi0/spi0.0/tp_fw_update 0
+
+    # Fingerprint
+    chmod 0666 /dev/goodix_fp
+    chmod 0660 /sys/devices/platform/soc/soc:fingerprint_detect/sensor_version
+    chown system system /sys/devices/platform/soc/soc:fingerprint_detect/sensor_version
+    chmod 0666 /proc/touchpanel/touch_hold
+    chown system system /proc/touchpanel/touch_hold
+    chmod 0664 sys/devices/platform/soc/soc:goodix_fp/screen_state
+    chown system system sys/devices/platform/soc/soc:goodix_fp/screen_state
+    chmod 0666 /dev/qseecom
+    # QSEE/TZ Logs
+    chmod 0666 /proc/tzdbg/qsee_log
+    chmod 0666 /proc/tzdbg/tz_log
+
+    # Sensors
+    chmod 666 /dev/input/event1
+    chmod 666 /dev/input/event2
+    chmod 666 /dev/input/event8
+    chmod 666 /dev/input/event10
+
+# DASH
+# Fix ADSP issue when booted with DASH connected.
+on property:sys.boot_completed=1
+    write /sys/module/smb5_lib/parameters/sys_boot_complete 1
+
+service dashd /vendor/bin/dashd
+    class core
+    critical
+    seclabel u:r:dashd:s0
+    group root system
+
+# OTG Support
+on property:persist.sys.oem.otg_support=true
+    write /sys/class/power_supply/usb/otg_switch 1
+
+on property:persist.sys.oem.otg_support=false
+    write /sys/class/power_supply/usb/otg_switch 0
+
+# Camera
+service vendor.camera-provider-2-4 /vendor/bin/hw/android.hardware.camera.provider@2.4-service_64
+    override
+    interface android.hardware.camera.provider@2.4::ICameraProvider legacy/0
+    interface vendor.qti.hardware.camera.postproc@1.0::IPostProcService camerapostprocservice
+    class hal
+    user cameraserver
+    group audio camera input drmrpc oem_2907
+    ioprio rt 4
+    capabilities SYS_NICE
+    writepid /dev/cpuset/camera-daemon/tasks /dev/stune/foreground/tasks
+
+# UFS
+on property:sys.boot_completed=1 && property:persist.sys.ufs_hpb_disable=1
+    write /sys/devices/platform/soc/1d84000.ufshc/ufshpb_lu0/release 171
+
+on property:sys.boot_completed=1
+    write /sys/devices/platform/soc/1d84000.ufshc/ufstw_lu0/tw_enable 1
+    write /sys/devices/platform/soc/1d84000.ufshc/ufstw_lu0/flush_enable 1
+    write /sys/devices/platform/soc/1d84000.ufshc/ufstw_lu0/flush_during_hibern_enter 1
